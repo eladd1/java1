@@ -40,6 +40,6 @@ public class MainActivity extends AppCompatActivity {
         //myProvider.insert(Uri.parse("content://com.example.elad.android5777/User"), tempCP);
 
 
-        // last change: 15/12/16 00:05
+        // last change: 15/12/16 00:18
     }
 }
