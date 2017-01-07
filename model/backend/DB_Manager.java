@@ -1,6 +1,7 @@
 package com.example.elad.android5777.model.backend;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.example.elad.android5777.model.entities.Active;
 import com.example.elad.android5777.model.entities.Business;
@@ -18,10 +19,10 @@ public interface DB_Manager {
     public void addBusiness (ContentValues b);
     public void addActivity (ContentValues a);
 
-    public boolean isAdded ();
+    public Cursor getUsers() throws Exception;
+    public Cursor getActivity() throws Exception;
+    public Cursor getBusiness() throws Exception;
 
-    public Collection<User> getUsers();
-    public Collection<Business> getBusinesses();
-    public Collection<Active> getActivities();
-    public void checkForChanges();
+    public boolean isBusinessChanged();
+    public boolean isActivityChanged();
 }

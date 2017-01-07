@@ -1,7 +1,9 @@
-package com.example.elad.android5777;
+package com.example.elad.android5777.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.elad.android5777.R;
 
 public class newBusiness extends AppCompatActivity {
 

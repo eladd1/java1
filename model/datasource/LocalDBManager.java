@@ -2,6 +2,8 @@ package com.example.elad.android5777.model.datasource;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.MatrixCursor;
 
 import com.example.elad.android5777.model.backend.DB_Manager;
 import com.example.elad.android5777.model.entities.Active;
@@ -80,27 +82,85 @@ public class LocalDBManager implements DB_Manager {
     }
 
     @Override
-    public boolean isAdded() {
-        return activitiesUpdate&&businessUpdate;
+    public Cursor getActivity() {
+        Active activity;
+        MatrixCursor MatrixActions = new MatrixCursor(new String[]{
+                "country",
+                "start",
+                "end",
+                "price",
+                "description",
+                "BusinessId"});
+        for (int i = 0; i < activities.size(); i++) {
+            activity = activities.get(i);
+            MatrixActions.addRow(new Object[]{
+                    activity.getCountry(),
+                    activity.getStart(),
+                    activity.getEnd(),
+                    activity.getPrice(),
+                    activity.getDescription(),
+                    activity.getBusinessId()});
+        }
+        return MatrixActions;
     }
 
     @Override
-    public Collection<User> getUsers() {
-        return users;
+    public Cursor getBusiness() {
+        Business business;
+        MatrixCursor MatrixBusiness = new MatrixCursor(new String[]{
+                "id",
+                "name",
+                "address",
+                "phone",
+                "email",
+                "website"});
+        for (int i = 0; i < businesses.size(); i++) {
+            business = businesses.get(i);
+            MatrixBusiness.addRow(new Object[]{
+                    business.getId(),
+                    business.getName(),
+                    business.getAddress(),
+                    business.getPhone(),
+                    business.getEmail(),
+                    business.getWebsite()});
+        }
+        return MatrixBusiness;
     }
 
     @Override
-    public Collection<Business> getBusinesses() {
-        return businesses;
+    public Cursor getUsers() throws Exception {
+        User user;
+        MatrixCursor MatrixUsers = new MatrixCursor(new String[]{
+                "id",
+                "name",
+                "password"});
+        for (int i = 0; i < users.size(); i++) {
+            user = users.get(i);
+            MatrixUsers.addRow(new Object[]{
+                    user.getId(),
+                    user.getName(),
+                    user.getPassword()});
+        }
+        return MatrixUsers;
     }
 
     @Override
-    public Collection<Active> getActivities() {
-        return activities;
+    public boolean isBusinessChanged() {
+        if(businessUpdate)
+        {
+            businessUpdate = false;
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void checkForChanges() {
-
+    public boolean isActivityChanged() {
+        if(activitiesUpdate)
+        {
+            activitiesUpdate = false;
+            return true;
+        }
+        return false;
     }
 }

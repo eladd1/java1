@@ -1,4 +1,4 @@
-package com.example.elad.android5777;
+package com.example.elad.android5777.controller;
 
 import android.content.ContentValues;
 import android.net.Uri;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
+import com.example.elad.android5777.R;
 import com.example.elad.android5777.model.datasource.customContentProvider;
 import com.example.elad.android5777.model.sharedPreference.SharedPreferencesClass;
 
